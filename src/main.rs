@@ -13,9 +13,9 @@ use std::io::Read;
 
 fn main(){
     //Ask user: current directory or whole filesystem
-    use dialoguer::{Input,Confirm};
     use std::env;
 
+    println!("\nTHIS IS A FILE DEDUPLICATOR PROGRAM\n");
     println!("Where do you want to scan for duplicates?");
     println!("1:Current Directory");
     println!("2:Whole file system\nEnter 1 or 2:");
@@ -27,18 +27,12 @@ fn main(){
     let scan_dir=match choice{
         1=>env::current_dir().unwrap(),
         2=>"/".into(),
-        _=>{println!("Invalid choice. Existing.");
+        _=>{println!("Invalid choice.");
         return;
     }
     };
 
     println!("YOu chose to scan: {}", scan_dir.display());
-
-    let confirm= Confirm::new().with_prompt("Do you want to start scanning?").interact().unwrap();
-    if !confirm{
-        println!("Aborted");
-        return;
-    }
    
 
     //Collect all file paths
