@@ -1,0 +1,12 @@
+[package]
+name = "minor_1"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+walkdir="2.4.0"
+blake3="1.4.0"
+indicatif="0.17.7"
+dialoguer = "0.11.0"
+
+
