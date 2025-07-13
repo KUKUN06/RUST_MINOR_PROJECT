@@ -1,5 +1,5 @@
 use blake3::Hasher;
-use dialoguer::{Select};
+use std::io;
 use indicatif::
 {
     ProgressBar,
@@ -7,8 +7,8 @@ use indicatif::
 };
 use std::collections::HashMap;
 use std::fs::File;
-use std::io::{Read};
 use walkdir::WalkDir;
+use std::io::Read;
 
 
 fn main(){
@@ -18,9 +18,11 @@ fn main(){
 
     println!("Where do you want to scan for duplicates?");
     println!("1:Current Directory");
-    println!("2:Whole file system");
+    println!("2:Whole file system\nEnter 1 or 2:");
 
-    let choice:u8= Input::new().with_prompt("Enter 1 or 2").interact_text().unwrap();
+    let mut input=String::new();
+    io::stdin().read_line(&mut input).expect("Failed to take input");
+    let choice:u8=input.trim().parse().unwrap();
 
     let scan_dir=match choice{
         1=>env::current_dir().unwrap(),
