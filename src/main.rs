@@ -58,7 +58,6 @@ fn main(){
     //Hash file and detect duplicates
     let mut hash_map:HashMap<String,Vec<String>>=HashMap::new();
     for path in file_paths{
-        pb.inc(1);
         if let Ok(mut file)=File::open(&path){
             let mut hasher=Hasher::new();
             let mut buffer=[0u8;4096];
